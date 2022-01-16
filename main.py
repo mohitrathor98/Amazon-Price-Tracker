@@ -1,4 +1,10 @@
 import AmazonScrapper
 
+print("Fetching Wishlist...")
 wishlist_url = "https://www.amazon.in/hz/wishlist/ls/2NQ950UEEK5LM"
-print(AmazonScrapper.get_wishlist_items(wishlist_url))
+wishlist_items = AmazonScrapper.get_wishlist_items(wishlist_url)
+
+print(f"Fetching prices for {len(wishlist_items)} items...")
+for item in wishlist_items:
+    # scrape for price of item
+    price = AmazonScrapper.get_price_of_item([item[key] for key in item][0])
