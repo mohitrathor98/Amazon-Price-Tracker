@@ -19,9 +19,10 @@ def get_wishlist_items(wishlist_url):
     
     try:
         response = requests.get(url=wishlist_url, headers=HEADERS)
-        print(response.status_code)
+        #print(response.status_code)
     except:
         print("Failed to establsih connection")
+        return []
     wishlist = response.text
 
     wish_parser = BeautifulSoup(wishlist, 'html.parser')    
@@ -43,18 +44,17 @@ def get_price_of_item(item_url):
     item_url = "https://www.amazon.in"+item_url
     try:
         response = requests.get(url=item_url, headers=HEADERS)
-        print(response.status_code)
+        #print(response.status_code)
     except:
         print("Failed to establish connection with " + item_url)
+        return ""
     
     item_page = response.text
     item_page_parser = BeautifulSoup(item_page, "html.parser")
 
     try:
-        item_price = item_page_parser.find("div", id="corePrice_feature_div").get_text().split("₹")
-        return float(item_price)
+        item_price = item_page_parser.find("div", id="corePrice_feature_div").get_text()
+        return item_price
     except:
-        with open("data.html", "a+") as file:
-            file.write(item_page_parser.prettify())
         return "Error while fetching item_price"
     
