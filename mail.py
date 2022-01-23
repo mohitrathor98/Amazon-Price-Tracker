@@ -27,3 +27,4 @@ def send_mail(body:dict):
             to_addrs="mohitrathor8@gmail.com", 
             msg=f"Subject:{subject}\n\n{message_body}"
         )   
+    print("Mail sent for item ", item_name)
