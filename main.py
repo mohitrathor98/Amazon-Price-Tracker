@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 import AmazonScrapper, mail, json
 
 print("Fetching Wishlist...")
@@ -29,7 +30,7 @@ for item in wishlist_items:
         comma -= 1  
     price = float(''.join(price))    
     
-    item = item.keys()[0]
+    item = [name for name in item.keys()][0]
     if item not in data.keys():
         data[item] = price
     else:
@@ -37,4 +38,4 @@ for item in wishlist_items:
             mail.send_mail({item:price})
     
 with open("prices.json", "w") as file:
-    json.dump(data)
+    json.dump(data, file, indent=4)

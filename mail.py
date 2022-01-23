@@ -12,7 +12,7 @@ password = "demopassword"
 
 def send_mail(body:dict):
     
-    item_name, item_price = body.items()[0]
+    item_name, item_price = [item for item in body.items()][0]
     subject = f"Price dropped for a item in your wishlist"
     message_body = f"Price dropped for {item_name}. Current Price Rs.{item_price}. Go check your wishlist."
     
