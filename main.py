@@ -2,7 +2,9 @@ from multiprocessing.sharedctypes import Value
 import AmazonScrapper, mail, json
 
 print("Fetching Wishlist...")
-wishlist_url = "https://www.amazon.in/hz/wishlist/ls/2NQ950UEEK5LM"
+
+wishlist_url = "YOUR WISHLIST URL HERE"
+
 wishlist_items = AmazonScrapper.get_wishlist_items(wishlist_url)
 
 with open("prices.json", "r") as file:

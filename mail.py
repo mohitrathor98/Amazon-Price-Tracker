@@ -3,12 +3,11 @@
 from email import message
 import smtplib
 
-# for gmail - turnoff all other authentication except for password
-#           - Turn on less secure app access
-# for yahoo - Account -> account scurity --> generate a new app password
-#           - this password will be used in password field
-my_email = "mohitdemo7@gmail.com"
-password = "demopassword"
+receipent = "mohitrathor8@gmail.com" # MAIL TO WHICH EMAIL TO BE RECEIVED
+
+
+my_email = "mohitdemo7@gmail.com" # MAIL FROM WHCIH EMAIL TO BE SENT
+password = "demopassword" # PASSWORD OF THE SENDER MAIL
 
 def send_mail(body:dict):
     
@@ -24,7 +23,7 @@ def send_mail(body:dict):
         connection.login(user=my_email, password=password)
         connection.sendmail(
             from_addr=my_email, 
-            to_addrs="mohitrathor8@gmail.com", 
+            to_addrs=receipent, 
             msg=f"Subject:{subject}\n\n{message_body}"
         )   
     print("Mail sent for item ", item_name)
